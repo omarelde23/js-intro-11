@@ -1,0 +1,110 @@
+/*
+Task 1 
+
+*/
+
+let r1 = Math.round(Math.random() * (50 - 0)); 
+console.log(`My random variable is ${r1}`);
+
+result = r1 * 5;
+
+console.log(`The random number * 5 is ${result}`); 
+
+
+
+
+/*
+
+Task 2
+
+*/
+
+
+rand1 = Math.round(Math.random() * (10 - 1)) + 1;
+rand2 = Math.round(Math.random() * (10 - 1)) + 1;
+
+console.log(`My two random numbers are ${rand1} and ${rand2}`);
+
+max = Math.max(rand1, rand2);
+console.log(`My max number = ${max}.`);
+
+min = Math.min(rand1, rand2);
+console.log(`My min number = ${min}`);
+
+console.log(`The difference between my max and min = ${max - min}`);
+
+
+
+
+/*
+
+Task 3
+*/
+
+
+
+let randomNumber = Math.round(Math.random() * (100 - 50)) + 50;
+
+console.log(`My random number is ${randomNumber}`); 
+
+let remainder = randomNumber % 10; 
+
+console.log(`My random number % 10 = ${remainder}`);
+
+
+
+/*
+
+Task 4
+*/
+
+
+num1 = Math.round(Math.random() * (10 - 1) + 1);
+num2 = Math.round(Math.random() * (10 - 1) + 1);
+num3 = Math.round(Math.random() * (10 - 1) + 1);
+num4 = Math.round(Math.random() * (10 - 1) + 1);
+num5 = Math.round(Math.random() * (10 - 1) + 1);
+
+console.log(`My random numbers are ${num1}, ${num2}, ${num3}, ${num4}, and ${num5}`);
+let result1 = (`${num1 * 5}, ${num2 * 5}, ${num3 * 5}, ${num4 * 5}, and ${num5 * 5}`) 
+
+console.log(`My numbers multiplied by 5 is ${result1})`)
+
+console.log(`Added all together is ${(num1 * 5) + (num2 * 5) + (num3 * 5) + (num4 * 5) + (num5 * 5)}`);
+
+
+
+
+/*
+
+Task 5
+Write a program that generates 4 random numbers as below;
+1st number to be between 1 and 25 (both included)
+2nd number to be between 26 and 50 (both included)
+3rd number to be between 51 and 75 (both included)
+4th number to be between 76 and 100 (both included)
+Find the absolute difference between the max and min number
+Find the absolute difference between the second and third number
+Find the average of all 4 numbers
+Expected result:
+Difference of max and min = {result}
+Difference of second and third = {result}
+Average of all = {average}
+*/
+
+let ra1 = Math.round(Math.random() * (25 - 1)) + 1;
+let ra2 = Math.round(Math.random() * (50 - 26)) + 26;
+let ra3 = Math.round(Math.random() * (75 - 51)) + 51;
+let ra4 = Math.round(Math.random() * (100 - 76)) + 76;
+
+console.log(`My four random numbers are ${ra1}, ${ra2}, ${ra3}, ${ra4}.`);
+
+let max1 = Math.max(ra1, ra2, ra3, ra4);
+let min1 = Math.min(ra1, ra2, ra3, ra4);
+
+console.log(`The difference of max and min is ${max1 - min1}`);
+
+console.log(`The difference between the second and third greatest is ${ra3 - ra2}`);
+
+console.log(`The average of my numbers is ${(ra1 + ra2 + ra3 + ra4) / 4}`)
+

@@ -8,11 +8,13 @@ if the string length is odd
 */
 
 function doubleOrTripleWord(str) {
-    return str + str + str
+    if(str.length % 2 === 0) return str + str + str
+    else if(str.length % 2 !== 0) return str + str
 }
 
-console.log(doubleOrTripleWord('Tech'))
-console.log(doubleOrTripleWord('apple'))
+console.log(doubleOrTripleWord("Tech"))
+console.log(doubleOrTripleWord("Apple"))
+
 
 
 console.log('\n --------TASK02---------\n');
@@ -24,12 +26,14 @@ NOTE: Return empty string if the given string does not have any word.
 */
 
 function firstlastWord(str) {
-    let splitted = str.split(' ')
-    return splitted[0] + splitted[splitted.length - 1]
+    let strSplit = str.split(' ')
+    return strSplit[0] + strSplit[strSplit.length - 1] 
 }
 
-console.log(firstlastWord('I like java'))
-console.log(firstlastWord('Hello'))
+console.log(firstlastWord("I like JavaScript"))
+console.log(firstlastWord(''))
+console.log(firstlastWord('       '))
+
 
 
 console.log('\n --------TASK03---------\n');
@@ -48,10 +52,6 @@ function hasVowel(str) {
 }
 
 console.log(hasVowel("Javascript")) // true 
-console.log(hasVowel("ABC")) // true 
-console.log(hasVowel("1234")) // false
-console.log(hasVowel("Tech Global")) // true 
-console.log(hasVowel("")) // false 
 
 
 console.log('\n --------TASK04---------\n');
@@ -63,14 +63,13 @@ NOTE: Vowel letters: a, e, i o, u, A, E, I, O, U
 */
 
 function startVowel(str) {
-   return /^[aeoui]/i.test(str)
+    return /^[aeoui]/i.test(str)
 }
 
-console.log(startVowel("Hello")) // false 
-console.log(startVowel("Apple")) // true
-console.log(startVowel("orange")) // true 
-console.log(startVowel('123')) // false
-console.log(startVowel('   ')) // false
+console.log(startVowel("Hello"))
+console.log(startVowel("Apple"))
+
+
 
 
 console.log('\n --------TASK05---------\n');
@@ -80,13 +79,15 @@ Average of Edges
 Write a function named averageOfEdges() which takes three number arguments and will return average of min and max numbers
 */
 
+
 function averageOfEdges(num1, num2, num3) {
     return (Math.max(num1, num2, num3) + Math.min(num1, num2, num3)) / 2
 }
 
-console.log(averageOfEdges(-2, -2, 10)) // 4
+console.log(averageOfEdges(-2, -2, 10))  // 4
 console.log(averageOfEdges(-3, 15, -3)) // 6
 console.log(averageOfEdges(10, 13, 20)) // 15
+
 
 
 console.log('\n --------TASK06---------\n');
@@ -105,10 +106,10 @@ function replaceFirstLast(str) {
     return trimmed.slice(-1) + trimmed.slice(1, -1) + trimmed[0]
 }
 
-console.log(replaceFirstLast("Hello")) // oellH
-console.log(replaceFirstLast("Tech Global")) // "lech GlobaT"
-console.log(replaceFirstLast("A")) // ''
-console.log(replaceFirstLast("     A      ")) // ''
+console.log(replaceFirstLast("Hello"))
+console.log(replaceFirstLast("Tech Global"))
+console.log(replaceFirstLast(" A "))
+
 
 
 console.log('\n --------TASK07---------\n');
@@ -121,13 +122,14 @@ NOTE: Return empty string if the given string does not have 8 or more characters
 
 function swap4(str) {
     let trimmedString = str.trim()
-    if(trimmedString.length < 8) return ''
+    if(trimmedString.length <= 7) return ''
     return trimmedString.slice(-4) + trimmedString.slice(4, -4) + trimmedString.slice(0, 4)
 }
 
-console.log(swap4("JavaScript")) //"riptScJava"
-console.log(swap4("TechGlobal")) //  "obalGlTech"
-console.log(swap4("abc")) // ''
+console.log(swap4("JavaScript"))
+console.log(swap4("TechGlobal"))
+console.log(swap4("Apple"))
+
 
 
 console.log('\n --------TASK08---------\n');
@@ -140,29 +142,19 @@ NOTE: Return empty string if the given string does not have 2 or more words.
 */
 
 function swapFirstLastWord(str) {
-    let myTrimmedString = str.trim()
-    let splittedString = myTrimmedString.split(' ')
-    if(splittedString.length < 2) return ''
-    let temporary = splittedString[0] 
-    splittedString[0] = splittedString[splittedString.length - 1]
-    splittedString[splittedString.length - 1] = temporary
-
-    return splittedString.join(' ')
+    let trimmedSwap = str.trim().split(/\s+/)
+    if(trimmedSwap.length <= 1) return ''
+    let temporary = trimmedSwap[0]
+    trimmedSwap[0] = trimmedSwap[trimmedSwap.length - 1]
+    trimmedSwap[trimmedSwap.length - 1] = temporary
+    return trimmedSwap.join(' ')
 }
 
+console.log(swapFirstLastWord("Hello World"))
+console.log(swapFirstLastWord("I like JavaScript"))
+console.log(swapFirstLastWord("foo bar foo bar"))
+console.log(swapFirstLastWord("  "))
 
-/*
-function swapFirstLastWord(str) {
-    const words = str.trim().split(/\s+/); // handles extra spaces
-    if (words.length < 2) return '';
-    
-    [words[0], words[words.length - 1]] = [words[words.length - 1], words[0]]; // swap
-    return words.join(' ');
-}
-*/
-
-console.log(swapFirstLastWord("Hello World")) // 'World Hello'
-console.log(swapFirstLastWord("I like JavaScript")) // "JavaScript like I"
 
 
 console.log('\n --------TASK09---------\n');
@@ -172,17 +164,17 @@ Write a function named countPos() which takes an array of numbers as an argument
 returns how many elements are positive when invoked.
 */
 
-
 function countPos(arr) {
-    let theCounter = 0
+    let counter = 0
     for(const num of arr) {
-        if(num > 0) theCounter++
+        if(num > 0) counter++
     }
-    return theCounter
+    return counter
 }
 
 console.log(countPos([-45, 0, 0, 34, 5, 67])) // 3
 console.log(countPos([-23, -4, 0, 2, 5, 90, 123])) // 4
+
 
 
 console.log('\n --------TASK10---------\n');
@@ -190,22 +182,24 @@ console.log('\n --------TASK10---------\n');
 /*
 Write a function named as getEvens() which takes 2 number arguments and 
 returns all the even numbers as an array stored from smallest even number to greatest even number when invoked.
-NOTE: Make your code dynamic that works for any numbers and return empty array 
-if there are no even numbers in the range of given 2 numbers.
+NOTE: Make your code dynamic that works for any numbers and 
+return empty array if there are no even numbers in the range of given 2 numbers.
 Assume you will not be given negative numbers.
 */
 
 function getEvens(num1, num2) {
-    const newArray = []
+    const evensArr = []
     for(let i = Math.min(num1, num2); i < Math.max(num1, num2); i++) {
-        if(i % 2 === 0) newArray.push(i)
+        if(i % 2 === 0) evensArr.push(i)
     }
-return newArray
+    return evensArr
 }
 
 console.log(getEvens(2, 7))
 console.log(getEvens(17, 5))
-console.log(getEvens(3, 3)) 
+console.log(getEvens(3, 3))
+
+
 
 
 console.log('\n --------TASK11---------\n');
@@ -219,16 +213,27 @@ return empty array if there are no numbers divisible by 5 in the range of given 
 Assume you will not be given negative numbers.
 */
 
+
 function getMultipleOf5(num1, num2) {
-    const newArr = []
-    for(let i = Math.min(num1, num2); i < Math.max(num1, num2); i++) {
-        if(i % 5 === 0) newArr.push(i)
+    const divisibleArr = []
+    if(num1 <= num2) {
+        for(let i = num1; i <= num2; i++) {
+            if(i % 5 === 0) divisibleArr.push(i)
+        }
     }
-return newArr
+    else {
+        for(let i = num1; i >= num2; i--) {
+            if(i % 5 === 0) divisibleArr.push(i)
+        }
+    }
+    return divisibleArr
 }
 
-console.log(getMultipleOf5(3, 17)) 
+
+console.log(getMultipleOf5(3, 17))
 console.log(getMultipleOf5(23, 5))
+console.log(getMultipleOf5(5, 5))
+console.log(getMultipleOf5(2, 4))
 
 
 
@@ -245,11 +250,12 @@ function countNeg(arr) {
     for(const num of arr) {
         if(num < 0) counter++
     }
-    return counter
+return counter
 }
 
 console.log(countNeg([-45, 0, 0, 34, 5, 67]))
 console.log(countNeg([-23, -4, 0, 2, 5, 90, 123]))
+console.log(countNeg([0, -1, -2, -3]))
 
 
 console.log('\n --------TASK13---------\n');
@@ -263,16 +269,16 @@ NOTE: Ignore case sensitivity.
 */
 
 function countA(str) {
-    let acount = 0
-    let splitString = str.toLowerCase().split('')
-    for(const ele of splitString) {
-        if(ele === 'a') acount++
+    let counter = 0
+    for(let i = 0; i < str.length; i++) {
+        if(str[i] === 'a' || str[i] === 'A') counter++
     }
-    return acount
+    return counter
 }
 
-console.log(countA("TechGlobal is a QA bootcamp")) // 4
-
+console.log(countA("TechGlobal is a QA bootcamp"))
+console.log(countA("QA stands for Quality Assurance"))
+console.log(countA("Cypress"))
 
 
 console.log('\n --------TASK13---------\n');
@@ -283,13 +289,13 @@ returns the total count of words in the given string when invoked.
 */
 
 function countWords(str) {
-    let trimmed = str.trim().split(' ')
-    return trimmed.length
+    let splitStr = str.trim().split(/\s+/)
+    return splitStr.length
 }
 
-console.log(countWords(" Javascript is fun ")) // 3
-console.log(countWords("Cypress is an UI automation tool. ")) // 6
-console.log(countWords("1 2 3 4")) // 4
+console.log(countWords(" Javascript is fun "))
+console.log(countWords("Cypress is an UI automation tool. "))
+console.log(countWords("1 2 3 4"))
 
 
 console.log('\n --------TASK14---------\n');
@@ -302,17 +308,19 @@ Assume you will not be given a negative number.
 */
 
 function factorial(num) {
-    let factorial = 1
-    for(let i = num; i > 0; i--) {
-    factorial *= i
+    let fact = 1
+    for(let i = num; i >= 1; i--) {
+        fact *= i
     }
-return factorial
+    return fact
 }
 
-console.log(factorial(5)) // 120
-console.log(factorial(4)) // 24
-console.log(factorial(1)) // 1
-console.log(factorial(0)) // 1
+console.log(factorial(5))
+console.log(factorial(4))
+console.log(factorial(0))
+console.log(factorial(1))
+
+
 
 
 console.log('\n --------TASK15---------\n');
@@ -323,19 +331,19 @@ returns the count of the words that has 3 characters or less when invoked
 */
 
 function count3OrLess(str) {
-    if(str.trim() === '') return 0
-    let count = 0
+    let counter = 0
     let splitStr = str.split(' ')
     for(let i = 0; i < splitStr.length; i++) {
-        if(splitStr[i].length <= 3) count++
+        if(splitStr[i].length <= 3) counter++
     }
-    return count
+    return counter
 }
 
-console.log(count3OrLess("JavaScript is fun")) // ->2)
-console.log(count3OrLess("My name is John Doe")) // ->3)
-console.log(count3OrLess("Hello")) // ->0)
-console.log(count3OrLess(''))
+console.log(count3OrLess("Hello"))
+console.log(count3OrLess("Hi John"))
+console.log(count3OrLess("JavaScript is fun"))
+console.log(count3OrLess("My name is John Doe"))
+console.log(count3OrLess(""))
 
 
 console.log('\n --------TASK16---------\n');
@@ -346,12 +354,12 @@ and returns the string back with all extra spaces removed when invoked.
 */
 
 function removeExtraSpaces(str) {
-    return str.trim().replace(/\s+/g, ' ')
+    return str.trim().split(/\s+/).join(' ')
 }
 
-console.log(removeExtraSpaces('       JavaScript     is fun'))
-console.log(removeExtraSpaces("Hello")) 
-
+console.log(removeExtraSpaces('     Hello       '))
+console.log(removeExtraSpaces('   Java     is    fun   '))
+console.log(removeExtraSpaces('Hello'))
 
 
 console.log('\n --------TASK17---------\n');
@@ -361,17 +369,17 @@ Middle Number
 Write a function named middleInt() which takes three number arguments and return the middle number.
 */
 
+
 function middleInt(num1, num2, num3) {
-    const numbersArray = []
-    numbersArray.push(num1, num2, num3)
-    numbersArray.sort((a, b) => a - b)
-    return numbersArray[1]
+    const intArr = []
+    intArr.push(num1, num2, num3)
+    intArr.sort((a, b) => a - b)
+    return intArr[1]
 }
 
 console.log(middleInt(-1, 25, 10)) // 10
 console.log(middleInt(5, 3, 5)) // 5
 console.log(middleInt(3, 15, 37)) // 15
-
 
 
 console.log('\n --------TASK18---------\n');
@@ -384,19 +392,19 @@ NOTE: Make your code dynamic that works for any array and return -1 if there are
 For two elements to be considered as duplicated, value and data types of the elements must be same.
 */
 
+
 function firstDuplicate(arr) {
-   for(let i = 0; i < arr.length; i++) {
-    for(let j = i + 1; j < arr.length; j++) {
-        if(arr[i] === arr[j]) return arr[i]
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = i + 1; j < arr.length; j++) {
+            if(arr[i] === arr[j]) return arr[i]
+        }
     }
-   }
-   return -1
+    return -1
 }
 
-console.log(firstDuplicate([ 3, 7, 10, 0, 3, 10 ])) // 3
-console.log(firstDuplicate([ 5, 7, 7, 0, 5, 10 ])) // 5
-console.log(firstDuplicate([ 5, '5', 3, 7, 4 ])) // -1
-console.log(firstDuplicate([ 123, 'abc', '123', 3, 'abc' ]))  // 'abc'
+console.log(firstDuplicate([ 3, 7, 10, 0, 3, 10 ]))
+console.log(firstDuplicate([ 5, 7, 7, 0, 5, 10 ]))
+
 
 
 console.log('\n --------TASK19---------\n');
@@ -409,23 +417,20 @@ if there are no duplicates in the array. For two elements to be considered as du
  value and data types of the elements must be same.
 */
 
-
 function getDuplicates(arr) {
-    const newArray = []
+    const duplicatesArr = []
     for(let i = 0; i < arr.length; i++) {
         for(let j = i + 1; j < arr.length; j++) {
-            if(arr[i] === arr[j] && !newArray.includes(arr[i])) newArray.push(arr[i])
+            if((arr[i] === arr[j]) && !duplicatesArr.includes(arr[i])) duplicatesArr.push(arr[i])
         }
     }
-    return newArray
+    return duplicatesArr
 }
 
-console.log(getDuplicates([ 0, -4, -7, 0, 5, 10, 45, -7, 0 ]))  // [0, -7]
-console.log(getDuplicates(['A', 'foo', '12' , 12, 'bar', 'a', 'a', 'foo']))  // ['foo' 'a']
-console.log(getDuplicates([ 'foo', '12' , 12, 'bar', 'a' ]))  // []
-console.log(getDuplicates([ 1, 2, 5, 0, 7 ])) // []
-
-
+console.log(getDuplicates([ 0, -4, -7, 0, 5, 10, 45, -7, 0 ]))
+console.log(getDuplicates([ 1, 2, 5, 0, 7 ]))
+console.log(getDuplicates(['A', 'foo', '12' , 12, 'bar', 'a', 'a', 'foo' ]))
+console.log(getDuplicates([ 'foo', '12' , 12, 'bar', 'a' ]))
 
 
 
@@ -438,17 +443,16 @@ NOTE: Vowel letters are A,E, O, U, I, a, e, o, u, i
 */
 
 function countVowels(str) {
-    let countVowel = 0
-    const vowels = 'aeiouAEIOU'
+    let counter = 0
+    const vowels = 'aeouiAEOUI'
     for(const ele of str) {
-        if(vowels.includes(ele)) countVowel++
+        if(vowels.includes(ele)) counter++
     }
-    return countVowel
+return counter
 }
 
-console.log(countVowels("JavaScript is fun")) // 5
-console.log(countVowels('Hello')) // 2
-
+console.log(countVowels("Hello"))
+console.log(countVowels("JavaScript is fun"))
 
 
 console.log('\n --------TASK21---------\n');
@@ -461,15 +465,13 @@ after words in the given string.
 */
 
 function reverseStringWords(str) {
-    let trim = str.trim() 
-    let split = trim.split(/\s+/)
-    let resultArray = split.map(ele => ele.split('').reverse().join(''))
-    return resultArray.join(' ')
+    let trimmed = str.trim().split(/\s+/)
+   let resultArr = trimmed.map(word => word.split('').reverse().join(''))
+   return resultArr.join(' ')
 }
 
 console.log(reverseStringWords("Hello World"))
 console.log(reverseStringWords("I like JavaScript"))
-
 
 
 console.log('\n --------TASK22---------\n');
@@ -481,19 +483,18 @@ NOTE: A letter that is not vowel is considered as a consonant letter.
 */
 
 function countConsonants(str) {
-    let countCons = 0
-    const vowels = 'aeouiAEOUI'
+    let counter = 0
+    const vowels = 'aeouiAEOUI' 
     for(const ele of str) {
-        if(!vowels.includes(ele)) countCons++
+        if(!vowels.includes(ele)) counter++
     }
-    return countCons
+    return counter
 }
 
-console.log(countConsonants("Hello")) //3
-console.log(countConsonants("Hello World")) // 8
-console.log(countConsonants("JavaScript is fun")) // 12
-console.log(countConsonants("")) // 0
-
+console.log(countConsonants("Hello"))
+console.log(countConsonants("Hello World"))
+console.log(countConsonants("JavaScript is fun"))
+console.log(countConsonants(""))
 
 
 console.log('\n --------TASK23---------\n');
@@ -505,17 +506,16 @@ NOTE: Be careful about the extra whitespaces before and after the array element.
 */
 
 function countMultipleWords(arr) {
-    let countMultiple = 0
-    for(const ele of arr) {
-        let trim = ele.trim()
-        let split = trim.split(/\s+/)
-        if(split.length > 1) countMultiple++
+    let counter = 0
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i].trim().split(/\s+/).length > 1) counter++
     }
-    return countMultiple
+    return counter
 }
 
-console.log(countMultipleWords([ "f o o", "b a r", "foo bar", '     foo    bar   '])) // 4
-console.log(countMultipleWords([ "foo", "", " ", "foo bar"])) // 1
+console.log(countMultipleWords([ "foo", "bar", "foobar", 'foo bar'])) // 1
+console.log(countMultipleWords([ "f o o", "      bar    ", "foo bar", 'foo bar']))
+
 
 
 console.log('\n --------TASK24---------\n');
@@ -537,13 +537,15 @@ function fizzBuzz(num1, num2) {
         if(i % 3 === 0 && i % 5 === 0) result.push('FizzBuzz')
             else if(i % 3 === 0) result.push('Fizz')
                 else if(i % 5 === 0) result.push('Buzz')
-                    else result.push(i)
+            else result.push(i)
     }
-return result.join(' | ')
+    return result.join(' | ')
 }
 
-console.log(fizzBuzz(13, 18)) // "13 | 14 | FizzBuzz | 16 | 17 | Fizz"
-
+console.log(fizzBuzz(13, 18))
+console.log(fizzBuzz(12, 5))
+console.log(fizzBuzz(5, 5))
+console.log(fizzBuzz(9, 6))
 
 
 console.log('\n --------TASK25---------\n');
@@ -556,13 +558,13 @@ Examples: kayak, civic, madam
 */
 
 function isPalindrome(str) {
-    let lower = str.toLowerCase()
-    return str === lower.split('').reverse().join('')
+    let lowercaseStr = str.toLowerCase()
+    return lowercaseStr === lowercaseStr.split('').reverse().join('')
 }
 
-console.log(isPalindrome('Civic'))
-console.log(isPalindrome('Hello'))
-console.log(isPalindrome('123454321'))
+console.log(isPalindrome("Hello"))
+console.log(isPalindrome("Kayak"))
+console.log(isPalindrome("123454321"))
 console.log(isPalindrome(''))
 
 
@@ -577,22 +579,16 @@ Examples: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31...
 NOTE: The smallest prime number is 2 and there is no negative prime numbers.
 */
 
+
 function isPrime(num) {
-    if (num < 2) return false;
-
-    for (let i = 2; i < num; i++) {
-        if (num % i === 0) return false;
+    if(num < 2) return false 
+    for(let i = 2; i < num; i++) {
+        if(num % i === 0) return false
     }
-
-    return true;
+    return true
 }
 
-console.log(isPrime(20)) // false 
-console.log(isPrime(2)) // -> true
-console.log(isPrime(29)) //  -> true
-console.log(isPrime(-5)) // -> false
-console.log(isPrime(0)) // 	-> false
-
+console.log(isPrime(20))
 
 
 console.log('\n --------TASK27---------\n');
@@ -603,17 +599,19 @@ returns a new array with sum of given arrays elements.
 NOTE: Be careful about the array sizes as they could be different
 */
 
-function add(arr1, arr2) {
-    const sumArray = []
-    for(let i = 0; i < arr1.length; i++) {
-        for(let j = 0; j < arr2.length; j++) {
-            sumArray.push(arr1[i] + arr2[j])
-        }
-    }
-    return sumArray
-}
 
-console.log(add([3, 0, 0, 7, 5, 10], [6, 3, 2])) // [9, 3, 2, 7, 5, 10]
+function add(arr1, arr2) {
+    const newArr = []
+    for(let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
+        newArr.push((arr1[i] || 0) + (arr2[i] || 0))
+    }
+    return newArr
+}
+console.log(add([3, 0, 0, 7, 5, 10], [6, 3, 2]))
+
+
+
+
 
 
 
@@ -624,13 +622,14 @@ Write a function named noA() which takes an array of strings as argument and wil
  return a new array with all elements starting with "A" or "a" replaced with "###".
 */
 
+
 function noA(arr) {
-    const aArray = []
+    const newArr = []
     for(let i = 0; i < arr.length; i++) {
-        if((arr[i].startsWith('A') || arr[i].startsWith('a'))) aArray.push('###')
-           else aArray.push(arr[i])
+        if(arr[i].startsWith('A') || arr[i].startsWith('a')) newArr.push('###')
+            else newArr.push(arr[i])
     }
-return aArray
+    return newArr
 }
 
 console.log(noA(["javascript", "hello", "123", "xyz"]))
@@ -650,18 +649,20 @@ If element can be divided by both 3 and 5, replace it with 101
 */
 
 function no3and5(arr) {
-    const integerArray = []
+    let newArray = []
     for(let i = 0; i < arr.length; i++) {
-        if(arr[i] % 3 === 0 && arr[i] % 5 === 0) integerArray.push(101)
-            else if(arr[i] % 3 === 0) integerArray.push(100)
-                else if(arr[i] % 5 === 0) integerArray.push(99)
-            else integerArray.push(arr[i])
+        if(arr[i] % 3 === 0 && arr[i] % 5 === 0) newArray.push(101)
+            else if(arr[i] % 3 === 0) newArray.push(100)
+                else if(arr[i] % 5 === 0) newArray.push(99)
+            else newArray.push(arr[i])
     }
-    return integerArray
+    return newArray
 }
+
 console.log(no3and5([7, 4, 11, 23, 17]))
 console.log(no3and5([3, 4, 5, 6]))
 console.log(no3and5([10, 11, 12, 13, 14, 15]))
+
 
 
 console.log('\n --------TASK30---------\n');
@@ -672,17 +673,17 @@ return a new array with all 13s replaced with 0s.
 */
 
 function no13(arr) {
-    const no13array = []
+    let new13array = []
     for(const num of arr) {
-        if(num === 13) no13array.push(0)
-            else no13array.push(num)
+        if(num === 13) new13array.push(0)
+            else new13array.push(num)
     }
-    return no13array
+    return new13array
 }
 
+console.log(no13([1, 2, 3 ,4]))
 console.log(no13([13, 2, 3]))
 console.log(no13([13, 13, 13 , 13, 13]))
-console.log(no13([1, 2, 3 ,4]))
 console.log(no13([]))
 
 
@@ -695,18 +696,16 @@ Write a function named removeDuplicates() which takes an array argument and
 */
 
 function removeDuplicates(arr) {
-    const noDuplicatesArray = []
-    for(let i = 0; i < arr.length; i++) {
-        if(!noDuplicatesArray.includes(arr[i])) noDuplicatesArray.push(arr[i])
+    const noDuplicates = []
+    for(const ele of arr) {
+        if(!noDuplicates.includes(ele)) noDuplicates.push(ele)
     }
-return noDuplicatesArray
+return noDuplicates
 }
 
 console.log(removeDuplicates([10, 20, 35, 20, 35, 60, 70, 60]))
 console.log(removeDuplicates([1, 2, 5, 2, 3]))
-console.log(removeDuplicates(["1", "2", "3", "2", "3"]))
 console.log(removeDuplicates(["abc", "xyz", "123", "ab", "abc", "ABC"]))
-
 
 
 console.log('\n --------TASK32---------\n');
@@ -718,11 +717,11 @@ returns a new string with all digits removed from the original string
 
 function noDigit(str) {
     return str.replace(/[0-9]/g, '')
-    }
+}
+
 console.log(noDigit("123Hello"))
 console.log(noDigit("123Hello World149"))
 console.log(noDigit("123Tech456Global149"))
-console.log(noDigit("Javascript"))
 console.log(noDigit(""))
 
 
@@ -734,13 +733,13 @@ a new string with all vowels removed from the original string.
 */
 
 function noVowel(str) {
-    return str.replace(/[aeouiAEOUI]/g, '')
+    return str.replace(/[aeoui]/gi, '')
 }
 
-console.log(noVowel("AEOxyz")) // 'xyz'
-console.log(noVowel("Javascript")) 
-console.log(noVowel("125$")) //  -> "125$")
-console.log(noVowel(""))  // ''
+console.log(noVowel("TechGlobal"))
+console.log(noVowel("AEOxyz"))
+console.log(noVowel("Javascript"))
+console.log(noVowel("125$"))
 
 
 console.log('\n --------TASK34---------\n');
@@ -750,20 +749,20 @@ Write a function named sumOfDigits() which takes a string argument and
 returns sum of all digits from the original string.
 */
 
-
 function sumOfDigits(str) {
     let sum = 0
-    for(const char of str) {
-        if(!isNaN(char) && char !== '') {
-            sum += Number(char)
+    for(const ele of str) {
+        if(!isNaN(ele) && ele !== '') {
+            sum += Number(ele)
         }
     }
     return sum
 }
 
-console.log(sumOfDigits("John’s age is 29"))  // 11
 
-
+console.log(sumOfDigits("John’s age is 29"))
+console.log(sumOfDigits("$125.0"))
+console.log(sumOfDigits(""))
 
 
 console.log('\n --------TASK35---------\n');
@@ -774,20 +773,254 @@ return the array with every number replaced with their factorials.
 */
 
 function arrFactorial(arr) {
-    for(let i = 0; i < arr.length; i++) {
-        
-    }
-}
-
-function arrFactorial(arr) {
-    const factorial = arr.map(x => {
-        let prod = 1
-        for(let i = x; i > 1; i--) {
-            prod *= i
+    const factorial = arr.map(num => {
+        let product = 1
+        for(let i = num; i > 1; i--) {
+            product *= i
         }
-        return prod
-    }) 
+        return product
+    })
     return factorial
 }
 
-console.log(arrFactorial([0, 5])) // 		-> [1,120]
+
+console.log(arrFactorial([0, 5]))
+console.log(arrFactorial([5 , 0, 6]))
+console.log(arrFactorial([1, 2, 3 ,4]))
+
+
+
+
+
+
+function isPrime(num) {
+    if(num < 2) return false
+    for(let i = 2; i < num; i++) {
+        if(num % i === 0) return false
+    }
+    return true
+}
+
+console.log(isPrime(20))
+console.log(isPrime(5))
+console.log(isPrime(-5))
+
+
+
+
+function noVowel(str) {
+    return str.replace(/[aeoui]/ig, '')
+}
+
+console.log(noVowel("TechGlobal"))
+console.log(noVowel("AEOxyz"))
+
+
+
+/*
+Write a function named as countMultipleWords() which takes an array as an argument and 
+returns the count of the elements that has multiple words when invoked.
+NOTE: Be careful about the extra whitespaces before and after the array element.
+*/
+
+function countMultipleWords(arr) {
+    let counter = 0
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i].trim().split(/\s+/).length > 1) counter++
+    }
+    return counter
+}
+
+console.log(countMultipleWords(['foo', 'foo bar', 'tech       global', '    omar   kinggg      '])) // 3
+
+
+
+/*
+Write a function named as reverseStringWords() which takes a string as an argument and
+returns string back with each word separately reversed when invoked.
+NOTE: Make your code dynamic that works for any string. 
+Make sure you consider extra spaces before and after words in the given string.
+*/
+
+function reverseStringWords(str) {
+    let trimmed = str.trim().split(/\s+/)
+   let result = trimmed.map(ele => ele.split('').reverse().join(''))
+return result.join(' ')
+}
+
+console.log(reverseStringWords("Hello World"))
+console.log(reverseStringWords("I like JavaScript"))
+
+
+
+/*
+Write a function named as countConsonants() which takes a string word as an argument and 
+returns the count of the consonant letters when invoked.
+NOTE: A letter that is not vowel is considered as a consonant letter.
+*/
+
+function countConsonants(str) {
+    let counter = 0
+    const vowels = 'aeouiAEOUI'
+    for(const ele of str) {
+        if(!vowels.includes(ele)) counter++
+    }
+    return counter
+}
+
+console.log(countConsonants("Hello"))
+
+
+
+/*
+Write a function named as isPalindrome() which takes a string word as an argument and
+ returns true if the word is palindrome or returns false otherwise when invoked.
+NOTE: Palindrome: It is a word that is read the same backward as forward
+Examples: kayak, civic, madam
+*/
+
+function isPalindrome(str) {
+    let lower = str.toLowerCase()
+    return lower === lower.split('').reverse().join('')
+}
+
+console.log(isPalindrome("Hello"))
+console.log(isPalindrome("Civic"))
+
+
+/*
+Write a function named as isPrime() which takes a number as an argument and 
+returns true if the number is prime or returns false otherwise when invoked.
+NOTE: Mathematically, Prime number is a number that can be divided only by itself and 1. 
+It cannot be divided by any other number. The smallest prime number is 2 and 2 is the only even prime number.
+Examples: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31...
+NOTE: The smallest prime number is 2 and there is no negative prime numbers.
+*/
+
+
+function isPrime(num) {
+    if(num < 2) return false
+    for(let i = 2; i < num; i++) {
+        if(num % i === 0) return fase
+    }
+    return true
+}
+
+console.log(isPrime(5))
+console.log(isPrime(2))
+console.log(isPrime(29))
+console.log(isPrime(-5))
+console.log(isPrime(0))
+console.log(isPrime(1))
+
+
+
+/*
+Write a function named add() which takes two array of numbers as argument 
+and returns a new array with sum of given arrays elements.
+NOTE: Be careful about the array sizes as they could be different
+*/
+
+function add(arr1, arr2) {
+    const sumArr = []
+    for(let i = 0; i < Math.max(arr1.length,  arr2.length); i++) {
+        sumArr.push((arr1[i] || 0) + (arr2[i] || 0))
+    }
+    return sumArr
+}
+
+console.log(add([3, 0, 0, 7, 5, 10], [6, 3, 2]))
+console.log(add([10,3,6,3,2],[6,8,3,0,0,7,5,10,34]))
+console.log(add([-5, 6, -3, 11], [5, -6, 3, -11]))
+
+
+
+function reverse(str) {
+    let trimmed = str.trim().split(/\s+/)
+    let result = trimmed.map(ele => ele.split('').reverse().join(''))
+    return result.join(' ')
+}
+
+console.log(reverse("Hello World"))
+
+
+function sumOfDigits(str) {
+    let sum = 0
+    for(let i = 0; i < str.length; i++) {
+        if(!isNaN(str[i]) && str[i] !== '') {
+            sum += Number(str[i])
+        }
+    }
+    return sum
+}
+
+console.log(sumOfDigits("John’s age is 29"))
+
+
+
+
+function arrFactorial(arr) {
+    const factorial = arr.map(num => {
+        let product = 1
+        for(let i = num; i > 1; i--) {
+            product *= i
+        }
+        return product
+    })
+    return factorial
+}
+
+console.log(arrFactorial([1, 2, 3 ,4]))
+console.log(arrFactorial([5 , 0, 6]))
+
+
+function add(arr1, arr2) {
+    const newArr = []
+    for(let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
+        newArr.push((arr1[i] || 0) + (arr2[i] || 0))
+    }
+    return newArr
+}
+
+console.log(add([3, 0, 0, 7, 5, 10], [6, 3, 2]))
+
+
+
+
+function add(arr1, arr2) {
+    const newArr = []
+    for(let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
+        newArr.push((arr1[i] || 0) + (arr2[i] || 0))
+    }
+    return newArr
+}
+
+console.log(add([3, 0, 0, 7, 5, 10], [6, 3, 2]))
+
+
+
+
+
+
+function isPrime(num) {
+    if(num < 2) return false 
+    for(let i = 2; i < num; i++) {
+        if(num % i === 0) return false
+    }
+    return true
+}
+console.log(isPrime(29))
+console.log(isPrime(10))
+console.log(isPrime(25))
+
+
+
+
+
+
+function isPalindrome(str) {
+    let lower = str.toLowerCase()
+    return lower === lower.split('').reverse().join('')
+}
+
+console.log(isPalindrome("Kayak"))

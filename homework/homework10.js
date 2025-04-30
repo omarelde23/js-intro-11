@@ -58,6 +58,24 @@ function calculateTotalPrice2(obj) {
     }
     let sum = 0
 
+    for (let item in obj) {
+        const quantity = obj[item];
+        const key = item.toLowerCase();
+
+        if (key === 'apple') {
+            const fullPriceApples = Math.floor(quantity / 2) + (quantity % 2);
+            const halfPriceApples = Math.floor(quantity / 2);
+            sum += (fullPriceApples * priceList.apple) + (halfPriceApples * priceList.apple * 0.5);
+        } else if (key === 'mango') {
+            const freeMangos = Math.floor(quantity / 4);
+            const payableMangos = quantity - freeMangos;
+            sum += payableMangos * priceList.mango;
+        } else if (priceList[key]) {
+            sum += quantity * priceList[key];
+        }
+    }
+
+    return sum.toFixed(2); 
 }
 
 console.log(calculateTotalPrice2({ Apple: 3, Mango: 5 })) //			-> 24.96

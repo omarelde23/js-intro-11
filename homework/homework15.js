@@ -135,10 +135,13 @@ function isTrueOrFalse(str) {
         else if(secondHalf.includes(splitted[i][0])) secondHalfNumber++
     }
 
-    return firstHalfNumber > secondHalfNumber
+    return firstHalfNumber >= secondHalfNumber
 }
 
 console.log(isTrueOrFalse("A big brown fox caught a bad rabbit"))  //true
 console.log(isTrueOrFalse("Xylophones can obtain Xenon.")) // false
+console.log(isTrueOrFalse("CHOCOLATE MAKES A GREAT SNACK") )  // true
+console.log(isTrueOrFalse("All FOoD tAsTEs NIcE for someONe") )  // true
+console.log(isTrueOrFalse("Got stuck in the Traffic") )  // false
 
 
